@@ -37,9 +37,14 @@ projects_schema = ProjectSchema(many=True)
 # end point to create a new project
 @app.route('/project', methods=["POST"])
 def add_project():
-    title = request.json['title']
-    content = request.json['content']
-    url = request.json['url']
+    post_data = request.get_json()
+    title = post_data.get('title')
+    content = post_data.get('content')
+    url = post_data.get('url')
+
+    # title = request.json['title']
+    # content = request.json['content']
+    # url = request.json['url']
     
 
     new_project = Project(title, content, url)
@@ -47,9 +52,8 @@ def add_project():
     db.session.add(new_project)
     db.session.commit()
 
-    project = Project.query.get(new_project.id)
 
-    return project_schema.jsonify(project)
+    return jsonify(project_schema.dump(new_project))
 
 
 # Endpoint to query all projects
