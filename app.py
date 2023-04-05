@@ -16,9 +16,9 @@ ma = Marshmallow(app)
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), unique=False)
-    content = db.Column(db.String(144), unique=False)
-    url = db.Column(db.String(100), unique=False)
+    title = db.Column(db.String, unique=False)
+    content = db.Column(db.String, unique=False)
+    url = db.Column(db.String, unique=False)
 
     def __init__(self, title, content, url):
         self.title = title
