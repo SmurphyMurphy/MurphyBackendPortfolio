@@ -74,17 +74,24 @@ def get_project(id):
 # Endpoint for updating a project
 @app.route("/project/<id>", methods=["PUT"])
 def project_update(id):
-    project = Project.query.get(id)
-    title = request.json['title']
-    content = request.json['content']
-    url = request.json['url']
+    put_data = request.get_json()
+    title = put_data.get('title')
+    content = put_data.get('content')
+    url = put_data.get('url')
 
-    project.title = title
-    project.content = content
-    project.url = url
+    project_update = db.session.query(Project).filter(Project.id == id).first()
+
+    if title != None:
+        project_update.title = title
+
+    if content != None:
+        project_update.content = content
+
+    if url != None:
+        project_update.url = url
 
     db.session.commit()
-    return project_schema.jsonify(project)
+    return jsonify(project_schema.dump(project_update))
 
 
 # Endpoint for deleting a record
