@@ -1,14 +1,16 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-import os
+# import os
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')
+# basedir = os.path.abspath(os.path.dirname(__file__))
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://xmqergsgeyflvr:711d10d51bdb23c3084a15265c452c01afcbf9094e596bde4a170b808748cb93@ec2-44-215-22-37.compute-1.amazonaws.com:5432/dc276us7n0jcua'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
