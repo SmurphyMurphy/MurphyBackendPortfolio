@@ -18,7 +18,7 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), unique=False)
     content = db.Column(db.String(144), unique=False)
-    url = db.column(db.String(100), unique=False)
+    url = db.Column(db.String(100), unique=False)
 
     def __init__(self, title, content, url):
         self.title = title
@@ -94,7 +94,7 @@ def project_delete(id):
 
 
 
-app = Flask(__name__)
+# app = Flask(__name__)
 auth = HTTPBasicAuth()
 
 users = {
